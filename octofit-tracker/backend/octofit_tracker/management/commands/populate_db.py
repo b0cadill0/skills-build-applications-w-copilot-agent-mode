@@ -26,4 +26,5 @@ class Command(BaseCommand):
         Workout.objects.get_or_create(name='Push-ups', defaults={'description': 'Do 20 push-ups'})
         Workout.objects.get_or_create(name='Sit-ups', defaults={'description': 'Do 30 sit-ups'})
 
-        self.stdout.write(self.style.SUCCESS('Successfully populated the database with test data'))
+        # Add a log message to confirm test data creation
+        self.stdout.write(self.style.SUCCESS('Successfully populated the database with test data for users, activities, and workouts'))
