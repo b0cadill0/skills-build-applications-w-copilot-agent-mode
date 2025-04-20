@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-&tx*to51!upcy=o4!5we86ev-_3clx-q=)61iq58jhq2kl+0yg
 DEBUG = True
 
 # Allow all hosts
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'psychic-trout-4gqw76r957w27pp4-8000.app.github.dev']
+ALLOWED_HOSTS = ['reimagined-disco-rr7pgwxv9v4h5xwj-8000.app.github.dev', 'localhost']
 
 
 # Application definition
@@ -75,9 +75,11 @@ WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'octofit_db',
+        'HOST': 'localhost',
+        'PORT': 27017,
     }
 }
 
@@ -123,7 +125,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Additional installed apps
+# Add required apps for OctoFit Tracker
 INSTALLED_APPS += [
     'rest_framework',
     'djongo',
@@ -131,33 +133,8 @@ INSTALLED_APPS += [
     'octofit_tracker',
 ]
 
-# Middleware for CORS
-MIDDLEWARE += [
-    'corsheaders.middleware.CorsMiddleware',
-]
-
-# Database configuration for MongoDB
-databases = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'octofit_db',
-        'HOST': 'localhost',
-        'PORT': 27017,
-    }
-}
+# Add middleware for CORS
+MIDDLEWARE.insert(1, 'corsheaders.middleware.CorsMiddleware')
 
 # Allow all origins for CORS
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_METHODS = [
-    'GET',
-    'POST',
-    'PUT',
-    'PATCH',
-    'DELETE',
-    'OPTIONS',
-]
-CORS_ALLOW_HEADERS = [
-    'content-type',
-    'authorization',
-    'x-csrftoken',
-]

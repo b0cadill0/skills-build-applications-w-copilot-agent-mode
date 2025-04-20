@@ -1,18 +1,18 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
 from .models import User, Team, Activity, Leaderboard, Workout
+from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
 
 @api_view(['GET'])
 def api_root(request, format=None):
-    base_url = 'https://psychic-trout-4gqw76r957w27pp4-8000.app.github.dev/'
+    base_url = 'https://reimagined-disco-rr7pgwxv9v4h5xwj-8000.app.github.dev/'
     return Response({
         'users': base_url + 'api/users/',
         'teams': base_url + 'api/teams/',
         'activities': base_url + 'api/activities/',
         'leaderboard': base_url + 'api/leaderboard/',
-        'workouts': base_url + 'api/workouts/'
+        'workouts': base_url + 'api/workouts/',
     })
 
 class UserViewSet(viewsets.ModelViewSet):
